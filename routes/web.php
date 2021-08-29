@@ -60,6 +60,14 @@ Route::post('/listmajors/add',[Majorscontroller::class, "addmajors"]) ->name("ad
 Route::post('/listmajors/edit',[Majorscontroller::class, "editlistmajors"]) ->name("editlistmajors");
 
 
+Route::get('admin/blog', 'BlogController@index')->name('admin.blog');
+Route::get('admin/blog/create', 'BlogController@create')->name('admin.blog.create');
+Route::POST('admin/blog/checkcreate', 'BlogController@checkcreate')->name('admin.blog.checkcreate');
+Route::get('admin/blog/update/{id}', 'BlogController@update')->name('admin.blog.update');
+Route::post('admin/blog/checkupdate/{id}', 'BlogController@checkupdate')->name('admin.blog.checkupdate');
+Route::get('admin/blog/delete/{id}', 'BlogController@delete')->name('admin.blog.delete');
+Route::get('admin/blog/view/{id}', 'BlogController@view')->name('admin.blog.view');
+
 
 
 
