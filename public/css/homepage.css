@@ -1,0 +1,54 @@
+.SearchBars{
+    padding-top: 5%;
+   
+}
+
+
+
+#Advanced:hover{
+    cursor: pointer;
+    color:rgb(110, 109, 107);
+}
+
+.cat_J{background:url(https://images1.content-hci.com/hca-cont/img/icons/ic_law.svg);width:50px;height:50px; background-repeat: no-repeat;}
+.cat_E{background:url(https://images2.content-hci.com/hca-cont/img/icons/ic_computer.svg);width:50px;height:50px; background-repeat: no-repeat; }
+.cat_C{background:url(https://images4.content-hci.com/hca-cont/img/icons/ic_architecture.svg);width:50px;height:50px;content:""; background-repeat: no-repeat;}
+.cat_F{background:url(https://images5.content-hci.com/hca-cont/img/icons/ic_creative.svg);width:50px;height:50px; background-repeat: no-repeat;}
+.cat_D{background:url(https://images3.content-hci.com/hca-cont/img/icons/ic_business.svg);width:50px;height:50px; background-repeat: no-repeat;}
+.cat_G{background:url(https://images6.content-hci.com/hca-cont/img/icons/ic_engineering.svg);width:50px;height:47px; background-repeat: no-repeat;}
+.cat_B{background:url(https://images7.content-hci.com/hca-cont/img/icons/ic_b.svg);width:50px;height:55px; background-repeat: no-repeat;}
+.cat_M{background:url(https://images8.content-hci.com/hca-cont/img/icons/ic_m.svg);width:50px;height:50px; background-repeat: no-repeat;}
+.cat_O{background:url(https://images1.content-hci.com/hca-cont/img/icons/ic_o.svg);width:52px;height:38px; background-repeat: no-repeat;}
+.cat_A{background:url(https://images2.content-hci.com/hca-cont/img/icons/ic_a.svg);width:50px;height:50px; background-repeat: no-repeat;}
+.cat_N{background:url(https://images3.content-hci.com/hca-cont/img/icons/ic_n.svg);width:50px;height:48px; background-repeat: no-repeat;}
+.cat_H{background:url(https://images4.content-hci.com/hca-cont/img/icons/ic_h.svg);width:50px;height:52px; background-repeat: no-repeat;}
+.cat_I{background:url(https://images5.content-hci.com/hca-cont/img/icons/ic_i.svg);width:50px;height:48px; background-repeat: no-repeat;}
+.cat_K{background:url(https://images6.content-hci.com/hca-cont/img/icons/ic_k.svg);width:50px;height:50px; background-repeat: no-repeat;}
+.cat_L{background:url(https://images7.content-hci.com/hca-cont/img/icons/ic_l.svg);width:50px;height:45px; background-repeat: no-repeat;}
+
+
+
+#title-card-industry{
+    font-size: 15pt;
+}
+
+#industry-row{
+    border-bottom:solid ;
+    border-width: 1px;
+    border-color: gainsboro;
+    padding: 15px 0px;
+
+}
+
+#industry-row-1{
+    border-bottom:solid ;
+    border-width: 1px;
+    border-color: gainsboro;
+    padding-bottom: 15px ;
+
+}
+#industry-row-3{
+    border:none;
+    padding-top: 15px;
+    font-weight: bold;
+}

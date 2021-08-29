@@ -1,0 +1,22 @@
+.footer-col-right{
+    margin-top:5%;
+    font-size: 13pt;
+
+}
+#tag-a{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    
+}
+#tag-a:hover{
+    color: rgb(0, 195, 255);
+}
+
+#footer-a{
+    color: white;
+    margin-left: 10%;
+}
+
+#footer-a:hover{
+    color: rgb(0, 195, 255);
+}
