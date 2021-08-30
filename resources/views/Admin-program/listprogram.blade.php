@@ -1,5 +1,5 @@
 @extends('layouts.layoutadmin.layout')
-@section('title', 'Đanh sách nhóm ngành')
+@section('title', 'Danh sách chương trình học')
 <style>
     #tontai {
         display: none;
@@ -18,7 +18,7 @@
     <div class="card">
         <div class="card-header">
             <h4 style="text-align: center">Danh sách chương trình học</h4>
-            <h6><a href="#" style="text-decoration: none" data-toggle="modal" data-target="#modelDN">Thêm ngành mới</a></h6>
+            <h6><a href="#" style="text-decoration: none" data-toggle="modal" data-target="#modelDN">Thêm chương trình học mới</a></h6>
 
         </div>
         <div class="card-body p-0">
@@ -42,8 +42,8 @@
                                 $count += 1;
                             @endphp
                             <td>{{ $count }}</td>
-                            <td>{{ $item->ID_group_major }}</td>
-                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->ID}}</td>
+                            <td>{{ $item->Program_name }}</td>
 
 
 
@@ -52,13 +52,13 @@
 
                             <td class="project-actions text-center">
                                 {{-- {{ route('admin.rental.image', $item->car_id) }} --}}
-                                <button class="btn btn-info btn-sm" onclick="edit('{{ $item->ID_group_major }}','{{ $item->name }}')" >
+                                <button class="btn btn-info btn-sm" onclick="edit('{{ $item->ID }}','{{ $item->Program_name }}')" >
                                     <i class="fas fa-pencil-alt">
                                     </i>
                                     Sửa
                                 </button>
                                 <a class="btn btn-danger btn-sm"
-                                    href="{{ url("/listgroupmajors/delete?id={$item->ID_group_major}") }}"
+                                    href="{{ url("/program/delete?id={$item->ID}") }}"
                                     onclick="javascript:return confirm('Bạn có thực sự muốn xóa ?')">
                                     <i class="fas fa-trash">
                                     </i>
@@ -72,7 +72,7 @@
                     @endforeach
                     @if ($count == 0)
                         <tr>
-                            <td colspan="4">Không có nhóm ngành trong hệ thống</td>
+                            <td colspan="4">Không có chương trình học trong hệ thống</td>
                         </tr>
                     @endif
 
@@ -99,10 +99,10 @@
     <div class="modal fade" id="modelDN" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="margin-top: 50%">
-                <form action="/listgroupmajors/add" method="POST" onsubmit="return checkerror()">
+                <form action="/program/add" method="POST" onsubmit="return checkerror()">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Thêm nhóm ngành mới</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Thêm chương trình mới</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -114,12 +114,12 @@
                             <div class="col" style="text-align: center">
                                 <div class="row">
                                     <div class="col-sm-1"></div>
-                                    <div class="col-sm-4"> <label>Nhập tên ngành</label></div>
+                                    <div class="col-sm-5"> <label>Nhập tên chương trình</label></div>
                                     <div class="col-sm-5">
                                         <div class="row">
                                             <div class="col">
-                                                <input type="text" class="form-control" placeholder="Nhập tên ngành"
-                                                    onchange="checknganh()" id="name" name="name">
+                                                <input type="text" class="form-control" placeholder="Nhập tên chương trình"
+                                                    onchange="checknganh()" id="name" name="Program_name">
                                             </div>
                                         </div>
 
@@ -129,12 +129,12 @@
                                 <div class="row" id="tontai">
                                     <div></div>
                                     <div class="col">
-                                        <label style="color:red">Nghành này đã tồn tại</label>
+                                        <label style="color:red">Tên chương trình này đã tồn tại</label>
                                     </div>
                                 </div>
                                 <div class="row" id="chuanhap">
                                     <div class="col">
-                                        <label style="color:red">Vui lòng nhập nhóm nghành</label>
+                                        <label style="color:red">Vui lòng tên chương trình học</label>
                                     </div>
 
                                 </div>
@@ -147,7 +147,7 @@
                     </div>
                     <div class="modal-footer">
                         <a href="#">
-                            <button type="submit" id="addgroup" class="btn btn-primary">Thêm nhóm ngành</button>
+                            <button type="submit" id="addgroup" class="btn btn-primary">Thêm chương trình học</button>
                         </a>
                     </div>
                 </form>
@@ -163,17 +163,17 @@
 
     <script>
 
-        function edit(id,name,groupmajors){
+        function edit(id,name){
 
   
 
             form =`<div class="modal fade" id="formedit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="margin-top: 50%">
-                <form action="/listgroupmajors/edit" method="POST" onsubmit="return checkerror1()">
+                <form action="/program/edit" method="POST" onsubmit="return checkerror1()">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Nhóm ngành</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Chương trình học</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -185,11 +185,11 @@
                             <div class="col" style="text-align: center">
                                 <div class="row">
                                     <div class="col-sm-1"></div>
-                                    <div class="col-sm-4"> <label>Nhập tên ngành</label></div>
+                                    <div class="col-sm-5"> <label>Nhập tên chương trình</label></div>
                                     <div class="col-sm-5">
                                         <div class="row">
                                             <div class="col">
-                                                <input type="text" class="form-control" hidden id="ID_group_major" value="`+id+`" name="ID_group_major">
+                                                <input type="text" class="form-control" hidden id="ID_group_major" value="`+id+`" name="ID_program">
                                                 <input type="text" class="form-control" placeholder="Nhập tên ngành"  value="`+name+`"
                                                     id="name1" name="name1">
                                             </div>
@@ -244,13 +244,13 @@
                     
 
                 for (i = 0; i < ds['data'].length; i++) {
-                    textmau = ds['data'][i]["name"].trim().toLowerCase();
+                    textmau = ds['data'][i]["Program_name"].trim().toLowerCase();
                     
                    
 
                     if (textmau == text) {
                         document.getElementById("addgroup").disabled = true;
-                     document.getElementById("tontai").style.display = "inline";
+                        document.getElementById("tontai").style.display = "inline";
                      break;
                        
 

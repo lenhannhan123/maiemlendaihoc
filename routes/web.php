@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Majorscontroller;
+use App\Http\Controllers\programstudy;
 use App\Http\Controllers\schoolcontroller;
 use App\Http\Controllers\schoolmajorscontroller;
 use Illuminate\Support\Facades\Route;
@@ -59,11 +60,19 @@ Route::get('/listgroupmajors/delete',[Majorscontroller::class, "deletegroupmajor
 Route::get('/listmajors',[Majorscontroller::class, "listmajors"]) ->name("listmajors");
 Route::post('/listmajors/add',[Majorscontroller::class, "addmajors"]) ->name("addmajors");
 Route::post('/listmajors/edit',[Majorscontroller::class, "editlistmajors"]) ->name("editlistmajors");
+Route::get('/listmajors/delete',[Majorscontroller::class, "deletelistmajors"]) ->name("deletelistmajors");
 
+Route::get('/program',[programstudy::class, "listprogram"]) ->name("listprogram");
+Route::post('/program/add',[programstudy::class, "addprogram"]) ->name("addprogram");
+Route::post('/program/edit',[programstudy::class, "editprogram"]) ->name("editprogram");
+Route::get('/program/delete',[programstudy::class, "deleteprogram"]) ->name("deleteprogram");
 
 
 
 Route::get('/schoolmajors/add',[schoolmajorscontroller::class, "getadd"]) ->name("getadd");
+Route::post('/schoolmajors/add',[schoolmajorscontroller::class, "add"]) ->name("add");
+
+
 
 
 

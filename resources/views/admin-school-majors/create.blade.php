@@ -92,7 +92,7 @@
                 </div>
 
 
-                <form action="{{ asset('/addschool') }}" style="margin-top: 2%" id="addschool" method="POST"
+                <form action="{{ asset('/schoolmajors/add') }}" style="margin-top: 2%" id="addschool" method="POST"
                     enctype="multipart/form-data">
                     @csrf
 
@@ -104,7 +104,7 @@
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-8">
                                     <label for="">Tên trường</label>
-                                    <select name="ID_school " id="ID_school " class="form-control">
+                                    <select name="ID_school" id="ID_school" class="form-control">
                                         @foreach ($school as $item)
                                             <option value="{{ $item['id_school'] }}">{{ $item['name_school'] }}</option>
                                         @endforeach
@@ -157,12 +157,11 @@
                             <div class="row">
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-8">
-                                    <label for="">Vùng miền</label>
-                                    <select name="area" id="area" class="form-control">
-                                        <option value="Miền Bắc">Miền Bắc</option>
-                                        <option value="Miền Trung">Miền Trung</option>
-                                        <option value="Miền Nam">Miền Nam</option>
-                                        <option value="Nước ngoài">Nước ngoài</option>
+                                    <label for="">Loại chương trình</label>
+                                    <select name="ID_school_programs" id="ID_school_programs" class="form-control">
+                                        @foreach ($program as $item)
+                                            <option value="{{ $item['ID'] }}">{{ $item['Program_name'] }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -171,8 +170,6 @@
                         </div>
                     </div>
 
-                    <input type="text" hidden class="form-control" name="lat" id="lat">
-                    <input type="text" hidden class="form-control" name="lng" id="lng">
 
 
 
@@ -183,13 +180,12 @@
                             <div class="row">
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-8">
-                                    <label for="">Loại trường</label>
-                                    <br>
-                                    <select name="School_type" id="School_type" class="form-control">
-                                        <option value="Trung cấp nghề">Trung cấp nghề</option>
-                                        <option value="Cao đẳng">Cao đẳng</option>
-                                        <option value="Đại học">Đại học</option>
-                                    </select>
+                                    <label for="">Nhập tiêu đề</label>
+                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="Title"
+                                        id="Title" required>
+                                    <div style="color:red">
+                                        <label id="messages1"></label>
+                                    </div>
                                 </div>
                             </div>
 
@@ -200,19 +196,19 @@
                             <div class="row">
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-8">
-                                    <label for="">Website</label>
-                                    <input type="text" class="form-control" placeholder="Nhập địa chỉ website"
-                                        name="website" id="website" required>
+                                    <label for="">Nhập mô tả</label>
+                                    <input type="text" class="form-control" placeholder="Nhập mô tả" name="description"
+                                        id="description" required>
                                     <div style="color:red">
-                                        <label id="messages4"></label>
+                                        <label id="messages2"></label>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row" style="margin-top: 5%">
+                    {{-- word --}}
+                    {{-- <div class="row" style="margin-top: 5%">
 
                         <div class="col">
                             <div class="row">
@@ -233,49 +229,287 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
+
+
 
                     <div class="row" style="margin-top: 5%">
-
+                        <div class="col-sm-1"></div>
                         <div class="col">
 
                             <div class="row">
-
+                                <div class="col-sm-1"></div>
                                 <div class="col-sm-8">
-                                    <div>
-                                        <label style="margin-left:30px">Thêm Logo</label>
-                                    </div>
+                                    <label for="">Thời gian học</label>
+                                    <select name="duration" id="duration" class="form-control">
+
+                                        <option value="1/2 - 1 Năm">1/2 - 1 Năm</option>
+                                        <option value="2 - 2,5 Năm">2 - 2,5 Năm</option>
+                                        <option value="3 - 3,5 Năm">3 - 3,5 Năm</option>
+                                        <option value="4 - 4,5 Năm">4 - 4,5 Năm</option>
+                                        <option value="5 - 5,5 Năm">5 - 5,5 Năm</option>
+                                        <option value="6 - 6,5 Năm">6 - 6,5 Năm</option>
+                                        <option value="7 - 7,5 Năm">7 - 7,5 Năm</option>
+                                        <option value="8 - 8,5 Năm">8 - 8,5 Năm</option>
+                                        <option value="9 - 9,5 Năm">9 - 9,5 Năm</option>
+                                        <option value="10 - 10,5 Năm">10 - 10,5 Năm</option>
+
+
+
+                                    </select>
                                 </div>
                             </div>
+
+
+                        </div>
+
+                        <div class="col">
                             <div class="row">
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-8">
-                                    <div>
-
-                                        <input type="file" class="custom-file-input" id="logo" name="logo" multiple>
-
-                                        <label class="custom-file-label" id="logo_label" for="">Choose file</label>
-                                        <br>
-
-                                        <br>
-                                        <img id="imagelogo" style="max-height: 100px" />
-                                    </div>
+                                    <label for="">Tiến độ</label>
+                                    <select name="Pace" id="Pace" class="form-control">
+                                        <option value="Toàn thời gian">Toàn thời gian</option>
+                                        <option value="Bán thời gian">Bán thời gian</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="row" id="text-logo" style="display: none">
+                        </div>
+                    </div>
 
+                    <div class="row" style="margin-top: 5%">
+                        <div class="col-sm-1"></div>
+                        <div class="col">
+
+                            <div class="row">
+                                <div class="col-sm-1"></div>
                                 <div class="col-sm-8">
-                                    <div>
-                                        <label style="margin-left:30px; color:red">Hình ảnh không hợp lệ hoặc file quá
-                                            lớn</label>
+                                    <label for="">Ngôn ngữ giảng dạy</label>
+                                    <select name="Teaching_language" id="Teaching_language" class="form-control">
+                                        <option value="Tiếng Việt">Tiếng Việt</option>
+                                        <option value="Tiếng Anh">Tiếng Anh</option>
+                                        <option value="Việt - Anh">Việt - Anh</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-8">
+                                    <label for="">Hình thức học</label>
+                                    <select name="study_type" id="study_type" class="form-control">
+                                        <option value="Học ở trường">Học ở trường</option>
+                                        <option value="Học trực tuyến">Học trực tuyến</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row" style="margin-top: 5%">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-6">
+
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-8">
+                                    <label for="">Học phí</label>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+
+                                            <input type="text" class="form-control" placeholder="Nhập học phí" name="Tuition"
+                                                id="Tuition" required>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div style="margin-top: 10%">triệu/năm</div>
+                                        </div>
+                                    </div>
+
+                                    <div style="color:red">
+                                        <label id="messages3"></label>
                                     </div>
                                 </div>
                             </div>
 
 
                         </div>
+
+                        <div class="col-sm-4">
+                            <div class="row">
+
+                                <div class="col-sm-10">
+                                    <label for="">Điểm chuẩn năm trước</label>
+                                    <input type="text" class="form-control" placeholder="Nhập điểm chuẩn" name="benchmark"
+                                        id="benchmark" required>
+                                    <div style="color:red">
+                                        <label id="messages4"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+                    <div class="row" style="margin-top: 5%">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-6">
+
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-8">
+                                    <label for="">Loại bằng cấp</label>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+
+                                            <select name="degree_type" id="degree_type" class="form-control">
+                                                    <option value="Trung cấp">Trung cấp</option>
+                                                    <option value="Cao đẳng">Cao đẳng</option>
+                                                    <option value="Đại học">Đại học</option>
+                                                    <option value="Thạc sĩ">Thạc sĩ</option>
+                                                    <option value="Tiến sĩ">Tiến sĩ</option>
+                                 
+                                            </select>
+                                        </div>
+                                   
+                                    </div>
+
+                                    <div style="color:red">
+                                        <label id="messages3"></label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <input type="text" name="countlink" id="countlink" hidden >
+                    <input type="text" name="countimg" id="countimg" hidden>
+
+
+                    <div class="row" style="margin-top: 5%">
+
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <label style="margin-left:30px">Giới thiệu về ngành</label>
+                                    <div class="card-body pad">
+                                        <div class="mb-3">
+                                            <textarea class="textarea" placeholder="Nhập thông tin"
+                                                name="text1" id="text1" 
+                                                style="width: 100%; height: 300px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div style="color:red">
+                                        <label id="messages5"></label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    
+                    <div class="row" style="margin-top: 5%">
+
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <label style="margin-left:30px">Điểm chuẩn qua từng năm</label>
+                                    <div class="card-body pad">
+                                        <div class="mb-3">
+                                            <textarea class="textarea" placeholder="Nhập thông tin"
+                                                name="text2" id="text2" 
+                                                style="width: 100%; height: 300px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div style="color:red">
+                                        <label id="messages5"></label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 5%">
+
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <label style="margin-left:30px">Môi trường học</label>
+                                    <div class="card-body pad">
+                                        <div class="mb-3">
+                                            <textarea class="textarea" placeholder="Nhập thông tin"
+                                                name="text3" id="text3" 
+                                                style="width: 100%; height: 300px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div style="color:red">
+                                        <label id="messages5"></label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 5%">
+
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <label style="margin-left:30px">Cơ sở vật chất</label>
+                                    <div class="card-body pad">
+                                        <div class="mb-3">
+                                            <textarea class="textarea" placeholder="Nhập thông tin"
+                                                name="text4" id="text4" 
+                                                style="width: 100%; height: 300px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div style="color:red">
+                                        <label id="messages5"></label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-top: 5%">
+
+                        <div class="col">
+
+                            <div style="text-align: center">
+                                <label>Thêm link youtube</label>
+                            </div>
+
+
+                            <div id="listlink"></div>
+
+                            <br>
+
+                            <div style="text-align: center">
+                                <label id="label_add_img" onclick="return addlink()">Nhấn vào đây để thêm link</label>
+                            </div>
+
+
+                        </div>
+                    </div>
+                 
+
+            
                     <div class="row" style="margin-top: 5%">
 
                         <div class="col">
@@ -299,8 +533,7 @@
 
 
 
-                    <input type="text" name="count" id="count" style="display: none">
-
+             
 
                     <div class="row" style="margin-top: 5%">
 
@@ -338,7 +571,7 @@
 
 
 
-
+{{-- Chuyen nganh --}}
 
     <script>
         majors = {!! json_encode($majors->toArray(), JSON_HEX_TAG) !!};
@@ -346,7 +579,7 @@
         function checkgroup() {
             idgroup = document.getElementById("ID_group_majors").value;
             str = "";
-            if (idgroup!="") {
+            if (idgroup != "") {
                 majors.forEach(element => {
                     if (element["ID_group_majors"] == idgroup) {
                         str += `<option value="` + element["ID_majors"] + `">` + element["name"] + `</option>`;
@@ -354,7 +587,7 @@
                 });
                 document.getElementById("ID_majors").innerHTML = str;
                 document.getElementById("ID_majors").disabled = false;
-            } else{
+            } else {
                 document.getElementById("ID_majors").innerHTML = `<option value="">Vui lòng chọn chuyên ngành</option>`;
                 document.getElementById("ID_majors").disabled = true;
             }
@@ -365,8 +598,180 @@
 
 
 
+{{-- Link youtube --}}
+
+    <script>
+        count=0;
+       function addlink(){
+            count+=1;
+            str =`
+                    <div class="row" style="margin-top: 5%">
+
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-sm-2"></div>
+                                <div class="col">
+                                    <label style="margin-left:30px">Nhập link `+count+`</label>
+                                    <input type="text" class="form-control" placeholder="Nhập link youtube" name="linkyoutube`+count+`"
+                                        id="description" required>
+                                </div>
+                                <div class="col-sm-2"></div>
+                            </div>
+                        </div>
+                    </div>`;
+
+                    document.getElementById("listlink").insertAdjacentHTML('beforeend', str)
+
+                    
+       }
 
 
+    </script>
+{{-- add img --}}
+<script>
+    function changeimage(i_inp, i_text, i_label, i_image) {
+
+        var fileName = $('#' + i_inp + '').val().split("\\").pop();
+
+        daucham = fileName.lastIndexOf(".");
+
+        size = Number($('#' + i_inp + '')[0].files[0].size);
+
+
+
+        duoifile = fileName.slice(daucham + 1, fileName.length);
+        duoifile = duoifile.toLowerCase();
+
+        if (((duoifile == "jpg") || (duoifile == "png") || (duoifile == "jpeg")) && (size <= 10485760)) {
+
+            document.getElementById("" + i_text + "").style.display = "none";
+
+            $('#' + i_inp + '').siblings("#" + i_label + "").addClass("selected").html(fileName);
+
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                // get loaded data and render thumbnail.
+                document.getElementById("" + i_image + "").src = e.target.result;
+            };
+
+            // read the image file as a data URL.
+            reader.readAsDataURL($('#' + i_inp + '')[0].files[0]);
+
+
+        } else {
+            document.getElementById("" + i_text + "").style.display = "inline";
+
+        }
+
+
+
+
+    }
+</script>
+
+
+<script>
+    count1 = 0;
+    // Xử lý thêm ảnh của trường
+    function addimg() {
+        count1 += 1;
+        textt = `
+                        <div class="row" style="margin-top: 5%">
+
+                            <div class="col">
+
+                                <div class="row">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-8">
+                                        <div>
+                                            <label style="margin-left:30px">Thêm ảnh ` + count1 + `</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-8">
+                                        <div>
+
+                                            <input type="file" class="custom-file-input" id="schoolimg` + count1 +
+            `" name="schoolimg` + count1 + `" multiple onchange='  changeimage("schoolimg` + count1 + `","schoolimg` +
+            count1 + `_text","schoolimg` + count1 + `_label","schoolimg` + count1 + `_image")'>
+
+                                            <label class="custom-file-label" id="schoolimg` + count1 + `_label" for="">Choose file</label>
+                                            <br>
+
+                                            <br>
+                                            <img id="schoolimg` + count1 + `_image" style="max-height: 100px" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" id="schoolimg` + count1 + `_text" style="display: none">
+
+                                    <div class="col-sm-8">
+                                        <div>
+                                            <label style="margin-left:30px; color:red">Hình ảnh không hợp lệ hoặc file quá
+                                                lớn</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            </div>              
+        `;
+
+        // document.getElementById("listimage").innerHTML = document.getElementById("listimage").innerHTML +
+
+
+
+
+        document.getElementById("listimage").insertAdjacentHTML('beforeend', textt)
+
+
+
+    }
+</script>
+
+<script>
+    function checksubmit() {
+
+
+
+
+        if (document.getElementById('Title').value == "") {
+            document.getElementById('messages1').innerText = "Vui lòng nhập tiêu đề"
+        } else {
+            document.getElementById('messages1').innerText = ""
+        }
+
+        if (document.getElementById('description').value == "") {
+            document.getElementById('messages2').innerText = "Vui lòng nhập mô tả"
+        } else {
+            document.getElementById('messages2').innerText = ""
+        }
+
+        if (document.getElementById('Tuition').value == "") {
+            document.getElementById('messages3').innerText = "Vui lòng nhập học phí"
+        } else {
+            document.getElementById('messages3').innerText = ""
+        }
+
+        if (document.getElementById('benchmark').value == "") {
+            document.getElementById('messages4').innerText = "Vui lòng nhập điểm chuẩn năm trước"
+        } else {
+            document.getElementById('messages4').innerText = ""
+        }
+
+  
+
+        document.getElementById("countlink").value = count;
+        document.getElementById("countimg").value = count1;
+        document.getElementById('nutsubmit').click() = true;
+
+
+    }
+</script>
 
 
 

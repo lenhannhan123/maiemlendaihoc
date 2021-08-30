@@ -94,6 +94,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ url('/program') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Chương trình mẫu</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                   <a href="{{ url('/listgroupmajors') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Nhóm nghành mẫu</p>
