@@ -80,7 +80,7 @@ class schoolcontroller extends Controller
     {
 
 
-        $ds = School::OrderBy('id_school', 'ASC')->paginate(10);
+        $ds = School::OrderBy('name_school', 'ASC')->paginate(10);
 
         return view("Admin-school.listschool", compact("ds"));
     }

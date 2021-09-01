@@ -68,9 +68,10 @@ Route::post('/program/edit',[programstudy::class, "editprogram"]) ->name("editpr
 Route::get('/program/delete',[programstudy::class, "deleteprogram"]) ->name("deleteprogram");
 
 
-
+Route::get('/schoolmajors',[schoolmajorscontroller::class, "schoolmajors"]) ->name("schoolmajors");
 Route::get('/schoolmajors/add',[schoolmajorscontroller::class, "getadd"]) ->name("getadd");
 Route::post('/schoolmajors/add',[schoolmajorscontroller::class, "add"]) ->name("add");
+Route::get('/schoolmajors/view',[schoolmajorscontroller::class, "viewschoolmajors"]) ->name("viewschoolmajors");
 
 
 
