@@ -602,9 +602,19 @@
                                 <div class="col">
                                     <label style="margin-left:30px">Nhập link `+count+`</label>
                                     <input type="text" class="form-control" placeholder="Nhập link youtube" name="linkyoutube`+count+`"
-                                        id="description" required>
+                                        id="linkyoutube`+count+`" required onchange="addifr('`+count+`')">
                                 </div>
                                 <div class="col-sm-2"></div>
+                            </div>
+                            <br>
+                            
+                            <div class="row" id="ifrdiv`+count+`" style="display:none">
+                            
+                                <div class="col" style="margin-left:10%">
+                                    <iframe width="560" height="315" id="ifr`+count+`" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                  
+                                </div>
+                        
                             </div>
                         </div>
                     </div>`;
@@ -616,6 +626,19 @@
 
 
     </script>
+
+<script>
+
+    function addifr(stt){
+      idytb = document.getElementById("linkyoutube"+stt+"").value;
+
+      document.getElementById("ifr"+stt+"").src="https://www.youtube.com/embed/"+idytb;
+      document.getElementById("ifrdiv"+stt+"").style.display="inline";
+        // https://www.youtube.com/embed/
+    }
+
+</script>
+
 {{-- add img --}}
 <script>
     function changeimage(i_inp, i_text, i_label, i_image) {

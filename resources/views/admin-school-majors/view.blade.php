@@ -111,9 +111,7 @@
                                     <select disabled name="ID_group_majors" id="ID_group_majors" class="form-control"
                                         onchange="checkgroup()">
                                         <option value="">Vui lòng chọn nhóm ngành</option>
-         
                                             <option >{{$ds["group"]}}</option>
-
                                     </select>
 
                                 </div>
@@ -196,29 +194,6 @@
                             </div>
                         </div>
                     </div>
-                    {{-- word --}}
-                    {{-- <div class="row" style="margin-top: 5%">
-
-                        <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <label style="margin-left:30px">Nhập thông tin giới thiệu</label>
-                                    <div class="card-body pad">
-                                        <div class="mb-3">
-                                            <textarea class="textarea" placeholder="Place some text here"
-                                                name="School_Introduction" id="School_Introduction" required
-                                                style="width: 100%; height: 300px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                        </div>
-
-                                    </div>
-                                    <div style="color:red">
-                                        <label id="messages5"></label>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
 
 
 
@@ -476,7 +451,7 @@
                             <div class="regular slider">
                                 @foreach ($link as $item1)
                                     <div align="center" >
-                                        <iframe  src="{{$item1['link']}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <iframe  src="https://www.youtube.com/embed/{{$item1['link']}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     </div>
     
 

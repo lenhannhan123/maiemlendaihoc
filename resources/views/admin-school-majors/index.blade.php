@@ -54,12 +54,12 @@
                           Xem
                         </a>
                         {{-- {{ route('admin.rental.image', $item->car_id) }} --}}
-                        <a class="btn btn-info btn-sm" href="{{url("schoollist/edit?id={$item->ID_school_majors}")}}">
+                        <a class="btn btn-info btn-sm" href="{{url("/schoolmajors/edit?id={$item->ID_school_majors}")}}">
                           <i class="fas fa-pencil-alt">
                           </i>
                           Sửa
                       </a>
-                       <a class="btn btn-danger btn-sm" href="{{url("schoollist/delete?id={$item->ID_school_majors}")}}" onclick="javascript:return confirm('Bạn có thực sự muốn xóa ?')">
+                       <a class="btn btn-danger btn-sm" href="{{url("/schoolmajors/delete?id={$item->ID_school_majors}")}}" onclick="javascript:return confirm('Bạn có thực sự muốn xóa ?')">
                           <i class="fas fa-trash">
                           </i>
                           Xóa

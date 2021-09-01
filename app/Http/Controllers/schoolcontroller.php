@@ -22,7 +22,7 @@ class schoolcontroller extends Controller
 
         $count = $ds["count"];
 
-        $ds["id_school"] = strtoupper($ds["id_school"]); 
+        $ds["id_school"] = strtoupper($ds["id_school"]);
 
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
@@ -120,93 +120,109 @@ class schoolcontroller extends Controller
     {
         $ds = $request->all();
         $dsmau = school::where("id_school", $ds["id_school"])->get()->first();
-        
 
-        if (isset($ds["logo"])) { 
+
+        if (isset($ds["logo"])) {
             if ($request->hasFile('logo')) {
                 $file = $request->file('logo');
                 // $extension = $file->getClientOriginalExtension();
 
                 $imageName = "{$ds['id_school']}.jpg";
                 $file->move("images/logoschool", $imageName);
-            } 
+            }
 
-            $ds["logo"]=$imageName;
+            $ds["logo"] = $imageName;
         } else {
-            $ds["logo"] = $dsmau["logo"]; $ds["logo"] = $dsmau["logo"];
-     
+            $ds["logo"] = $dsmau["logo"];
+            $ds["logo"] = $dsmau["logo"];
         }
 
-   
-        school::where("id_school", $ds["id_school"])->update(['name_school'=>$ds["name_school"], 'address'=>$ds["address"] , 'area'=>$ds["area"], 'School_Introduction'=>$ds["School_Introduction"] , 'School_type'=>$ds["School_type"]  , 'lat'=>$ds["lat"] , 'lng'=>$ds["lng"]  , 'website'=>$ds["website"] ,'logo'=> $ds["logo"] ]);
+
+        school::where("id_school", $ds["id_school"])->update(['name_school' => $ds["name_school"], 'address' => $ds["address"], 'area' => $ds["area"], 'School_Introduction' => $ds["School_Introduction"], 'School_type' => $ds["School_type"], 'lat' => $ds["lat"], 'lng' => $ds["lng"], 'website' => $ds["website"], 'logo' => $ds["logo"]]);
 
 
-            $count1 = count(schoolimage::where("id_school", $ds["id_school"])->get());
+        $count1 = count(schoolimage::where("id_school", $ds["id_school"])->get());
 
 
-        if($count1>0){
-            for ($i=1;$i<=$count1;$i++){
+        if ($count1 > 0) {
+            for ($i = 1; $i <= $count1; $i++) {
 
 
                 if (isset($ds['schoolimg' . $i . ''])) {
-               
-                } else {
-              
+
                     if ($request->hasFile('schoolimg' . $i . '')) {
                         $file = $request->file('schoolimg' . $i . '');
                         // $extension = $file->getClientOriginalExtension();
-        
+
                         $imageName = "{$ds['id_school']}{$i}.jpg";
                         $file->move("images/imgschool", $imageName);
-                    } 
+                    }
+                } else {
+
+                    if ($request->hasFile('schoolimg' . $i . '')) {
+                        $file = $request->file('schoolimg' . $i . '');
+                        // $extension = $file->getClientOriginalExtension();
+
+                        $imageName = "{$ds['id_school']}{$i}.jpg";
+                        $file->move("images/imgschool", $imageName);
+                    }
                 }
             }
         }
 
-          
-           $count= $ds["count"];
 
-           
-            if($count>$count1){
-                for($i=$count1+1;$i<=$count;$i++){
+        $count = $ds["count"];
 
-                    if ($request->hasFile('schoolimg' . $i . '')) {
-                        $file = $request->file('schoolimg' . $i . '');
-                        // $extension = $file->getClientOriginalExtension();
-        
-                        $imageName = "{$ds['id_school']}{$i}.jpg";
-                        $file->move("images/imgschool", $imageName);
-                    } 
 
-                    $a["ID_image"] = null;
-                    $a["ID_school"] = $ds["id_school"];
-                    $a["Image_name"] = $imageName;
-                    $a["description"] = null;
-                    
-                    schoolimage::create($a);
-                } 
+        if ($count > $count1) {
+            for ($i = $count1 + 1; $i <= $count; $i++) {
 
+                if ($request->hasFile('schoolimg' . $i . '')) {
+                    $file = $request->file('schoolimg' . $i . '');
+                    // $extension = $file->getClientOriginalExtension();
+
+                    $imageName = "{$ds['id_school']}{$i}.jpg";
+                    $file->move("images/imgschool", $imageName);
+                }
+
+                $a["ID_image"] = null;
+                $a["ID_school"] = $ds["id_school"];
+                $a["Image_name"] = $imageName;
+                $a["description"] = null;
+
+                schoolimage::create($a);
             }
-
-            
-
-
-            return redirect()->route('schoollist');
-    }
+        }
 
 
 
-    public function schooldelete(Request $request){
-        $id = $request->all();;
-
-        schoolimage::where("ID_school",$id)->delete();
-        school::where("id_school",$id)->delete();
 
         return redirect()->route('schoollist');
     }
 
 
-    
+
+    public function schooldelete(Request $request)
+    {
+        $id = $request->all();
+        $logo = school::where("id_school", $id)->select("logo")->get()->first();
+
+        $str =  "images/logoschool/" . $logo["logo"];
+        unlink($str);
 
 
+        $listimg = schoolimage::where("ID_school", $id)->select("Image_name")->get();
+
+
+        foreach($listimg as $item){
+
+            $str=  "images/imgschool/".$item["Image_name"];
+            unlink($str);
+        }
+
+        schoolimage::where("ID_school", $id)->delete();
+        school::where("id_school", $id)->delete();
+
+        return redirect()->route('schoollist');
+    }
 }

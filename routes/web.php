@@ -72,10 +72,9 @@ Route::get('/schoolmajors',[schoolmajorscontroller::class, "schoolmajors"]) ->na
 Route::get('/schoolmajors/add',[schoolmajorscontroller::class, "getadd"]) ->name("getadd");
 Route::post('/schoolmajors/add',[schoolmajorscontroller::class, "add"]) ->name("add");
 Route::get('/schoolmajors/view',[schoolmajorscontroller::class, "viewschoolmajors"]) ->name("viewschoolmajors");
-
-
-
-
+Route::get('/schoolmajors/edit',[schoolmajorscontroller::class, "geteditschoolmajors"]) ->name("geteditschoolmajors");
+Route::post('/schoolmajors/edit',[schoolmajorscontroller::class, "editschoolmajors"]) ->name("editschoolmajors");
+Route::get('/schoolmajors/delete',[schoolmajorscontroller::class, "deleteschoolmajors"]) ->name("deleteschoolmajors");
 
 
 
