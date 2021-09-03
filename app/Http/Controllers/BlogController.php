@@ -62,7 +62,14 @@ class BlogController extends Controller
 
     public function delete($id){
         $blog = Blog::find($id);
-        $blog->delete();
+        $image = Blog::where('id_blog', $id)->select('thumbnail')->get();
+        
+        foreach($image as $item){
+            $str = 'images/blog/'.$item['thumbnail'];
+            unlink($str);
+        }
+
+        Blog::where('id_blog', $id)->delete();
         return redirect('admin/blog');
     }
 

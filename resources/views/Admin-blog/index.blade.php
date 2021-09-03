@@ -71,6 +71,9 @@
               </tr>
                                    
               @endforeach
+              @if($count == 0)
+                <td colspan="7">Chưa có bài blog nào</td>
+              @endif
           </tbody>
       </table>
       <div class="pagination-block" style="float: right; padding-right: 24px">
