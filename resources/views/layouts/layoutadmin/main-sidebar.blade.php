@@ -88,9 +88,15 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ url('admin/index') }}" class="nav-link">
+                    <a href="{{ url('/schoolmajors') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Danh sách chuyên nghành </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/program') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Chương trình mẫu</p>
                     </a>
                 </li>
                 <li class="nav-item">

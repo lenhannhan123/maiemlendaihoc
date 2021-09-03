@@ -617,7 +617,7 @@
         document.getElementById("schoolimg" + count + "_image").src=`{{ asset('images/imgschool/`+img+`') }}`;
    }
 
-console.log();
+
 </script>
 
 
