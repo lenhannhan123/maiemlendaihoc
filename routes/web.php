@@ -28,9 +28,17 @@ Route::get('/search', function () {
 });
 
 
+// Route::get('/admin', function () {
+//     return view('adminhome');
+// });
+
+//--------------------------------------------------------------------------
+//Phần Thiện
 Route::get('/admin', function () {
     return view('adminhome');
-});
+})->middleware(['auth'])->name('adminhome');
+require __DIR__.'/auth.php';
+//--------------------------------------------------------------------------
 
 
 
