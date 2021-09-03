@@ -88,9 +88,15 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ url('admin/index') }}" class="nav-link">
+                    <a href="{{ url('/schoolmajors') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Danh sách chuyên nghành </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/program') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Chương trình mẫu</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -105,6 +111,38 @@
                         <p>Chuyên nghành mẫu</p>
                     </a>
                 </li>
+
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fas fa-user"></i>
+                <p>
+                    Quản lý blog
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('admin.blog') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p> Danh sách bài </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('admin.blog.create') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p> Thêm bài </p>
+                  </a>
+              </li>
+         
 
             </ul>
         </li>

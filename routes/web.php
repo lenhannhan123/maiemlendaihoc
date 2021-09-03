@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Majorscontroller;
+use App\Http\Controllers\programstudy;
 use App\Http\Controllers\schoolcontroller;
+use App\Http\Controllers\schoolmajorscontroller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,7 +60,34 @@ Route::get('/listgroupmajors/delete',[Majorscontroller::class, "deletegroupmajor
 Route::get('/listmajors',[Majorscontroller::class, "listmajors"]) ->name("listmajors");
 Route::post('/listmajors/add',[Majorscontroller::class, "addmajors"]) ->name("addmajors");
 Route::post('/listmajors/edit',[Majorscontroller::class, "editlistmajors"]) ->name("editlistmajors");
+Route::get('/listmajors/delete',[Majorscontroller::class, "deletelistmajors"]) ->name("deletelistmajors");
 
+Route::get('/program',[programstudy::class, "listprogram"]) ->name("listprogram");
+Route::post('/program/add',[programstudy::class, "addprogram"]) ->name("addprogram");
+Route::post('/program/edit',[programstudy::class, "editprogram"]) ->name("editprogram");
+Route::get('/program/delete',[programstudy::class, "deleteprogram"]) ->name("deleteprogram");
+
+
+Route::get('/schoolmajors',[schoolmajorscontroller::class, "schoolmajors"]) ->name("schoolmajors");
+Route::get('/schoolmajors/add',[schoolmajorscontroller::class, "getadd"]) ->name("getadd");
+Route::post('/schoolmajors/add',[schoolmajorscontroller::class, "add"]) ->name("add");
+Route::get('/schoolmajors/view',[schoolmajorscontroller::class, "viewschoolmajors"]) ->name("viewschoolmajors");
+Route::get('/schoolmajors/edit',[schoolmajorscontroller::class, "geteditschoolmajors"]) ->name("geteditschoolmajors");
+Route::post('/schoolmajors/edit',[schoolmajorscontroller::class, "editschoolmajors"]) ->name("editschoolmajors");
+Route::get('/schoolmajors/delete',[schoolmajorscontroller::class, "deleteschoolmajors"]) ->name("deleteschoolmajors");
+
+
+
+
+
+
+Route::get('admin/blog', 'BlogController@index')->name('admin.blog');
+Route::get('admin/blog/create', 'BlogController@create')->name('admin.blog.create');
+Route::POST('admin/blog/checkcreate', 'BlogController@checkcreate')->name('admin.blog.checkcreate');
+Route::get('admin/blog/update/{id}', 'BlogController@update')->name('admin.blog.update');
+Route::post('admin/blog/checkupdate/{id}', 'BlogController@checkupdate')->name('admin.blog.checkupdate');
+Route::get('admin/blog/delete/{id}', 'BlogController@delete')->name('admin.blog.delete');
+Route::get('admin/blog/view/{id}', 'BlogController@view')->name('admin.blog.view');
 
 
 

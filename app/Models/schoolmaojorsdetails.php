@@ -13,7 +13,7 @@ class schoolmaojorsdetails extends Model
     public $incrementing = false;
     protected $table = 'school_majors_detail';
     protected $primaryKey = 'ID_School_majors_detail';
-    protected $fillable = ['ID_School_majors_detail', 'ID_school_majors' ,'Introduce','Admissions','details','Result','Career_opportunities'];
+    protected $fillable = ['ID_School_majors_detail', 'ID_school_majors' ,'text1','text2','text3','text4'];
 
 
 
