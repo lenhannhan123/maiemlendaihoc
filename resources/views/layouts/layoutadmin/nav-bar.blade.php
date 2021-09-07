@@ -26,10 +26,8 @@
    
 
     <ul class="navbar-nav ml-auto" style="width:auto">
-      <li class="nav-item">Xin chào! Le Nguyen Thanh Nhan</li>
+      <li class="nav-item">Xin chào! {{ Auth::user()->name }}</li>
       <li>
-
-
         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
           <input type="button" class="btn btn-success" value="Đăng xuất">  
         </a>

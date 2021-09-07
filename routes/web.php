@@ -4,6 +4,7 @@ use App\Http\Controllers\Majorscontroller;
 use App\Http\Controllers\programstudy;
 use App\Http\Controllers\schoolcontroller;
 use App\Http\Controllers\schoolmajorscontroller;
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,16 +29,18 @@ Route::get('/search', function () {
 });
 
 
-// Route::get('/admin', function () {
-//     return view('adminhome');
-// });
-
 //--------------------------------------------------------------------------
 //Phần Thiện
 Route::get('/admin', function () {
     return view('adminhome');
 })->middleware(['auth'])->name('adminhome');
 require __DIR__.'/auth.php';
+
+Route::get('/index',[AccountController::class,"index"])->name("accountlist");
+Route::get('/create',[AccountController::class,"create"])->name("createaccount");
+Route::post('/postCreate', [AccountController::class, "postCreate"]);
+Route::get('/delete/{id}', [AccountController::class, "delete"]);
+
 //--------------------------------------------------------------------------
 
 
