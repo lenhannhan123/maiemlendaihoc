@@ -1,6 +1,6 @@
 <!-- lưu tại /resources/views/user/create.blade.php -->
-@extends('layoutAdmin.layout')
-@section('title', 'Create Admin Account')
+@extends('layouts.layoutadmin.layout')
+@section('title', 'Tạo tài khoản admin')
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -9,7 +9,7 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                    <h3 class="card-title">Create Admin Account</h3>
+                    <h3 class="card-title">Tạo tài khoản quản trị</h3>
                     </div>
                     {{-- <div class="card-comment">
                         <p>

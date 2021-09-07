@@ -36,9 +36,9 @@ Route::get('/admin', function () {
 })->middleware(['auth'])->name('adminhome');
 require __DIR__.'/auth.php';
 
-Route::get('/index',[AccountController::class,"index"])->name("accountlist");
-Route::get('/create',[AccountController::class,"create"])->name("createaccount");
-Route::post('/postCreate', [AccountController::class, "postCreate"]);
+Route::get('/accountlist',[AccountController::class,"accountlist"])->name("accountlist");
+Route::get('/accountlist/createaccount',[AccountController::class,"createaccount"])->name("createaccount");
+Route::post('/accountlist/postCreate', [AccountController::class, "postCreate"]);
 Route::get('/delete/{id}', [AccountController::class, "delete"]);
 
 //--------------------------------------------------------------------------

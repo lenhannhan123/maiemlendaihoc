@@ -2,23 +2,6 @@
 @extends('layouts.layoutadmin.layout')
 @section('Title', 'Danh sách tài khoản')
 @section('content')
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Account</h1>
-            </div>
-
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
-                    <li class="breadcrumb-item active">Danh sách tài khoản</li>
-                </ol>
-            </div>
-        </div>
-    </div><!-- /.container-fluid -->
-</section>
 
 <!-- Main content -->
 <section class="content">
@@ -26,7 +9,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-          <h3 class="card-title">List of all accounts including admin</h3>
+          <h3 class="card-title">Danh sách tất cả các tài khoản quản trị</h3>
   
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -41,12 +24,12 @@
           <table class="table table-striped projects" style="text-align: center">
               <thead>
                   <tr>
-                      <th>User ID</th>
-                      <th>Name</th>
+                      <th>ID</th>
+                      <th>Họ tên</th>
                       <th>Email</th>
-                      <th>Phone</th>
-                      <th>Date created</th>
-                      <th>Action</th>
+                      <th>Số điện thoại</th>
+                      <th>Ngày tạo</th>
+                      <th>Hành động</th>
                      
                   </tr>
               </thead>
@@ -56,28 +39,28 @@
                 <tbody>
                     @foreach($ds as $user)
                     <tr>
-                        <td>{{$user->user_id}}</td>
+                        <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->mobile}}</td>
                         <td>{{$user->created_at}}</td>
 
-                        <td class="project-actions text-right">
-                            <a class="btn btn-primary btn-sm" href="{{ url('admin/update/'.$user->user_id) }}" >
-                                <i class="fas fa-pencil-alt"> Detail</i>
+                        <td class="project-actions">
+                            <a class="btn btn-primary btn-sm" href="{{ url('admin/update/'.$user->id) }}" >
+                                <i class="fas fa-pencil-alt"> Chi tiết </i>
                             </a>
-                            {{-- @if ($user->user_id != $currentuser_id) --}}
-                            <a class="btn btn-danger btn-sm" href="{{ url('admin/delete/'.$user->user_id) }}" onclick="javascript:return confirm('Are you sure ?')">
-                                <i class="fas fa-trash"> Delete</i>
+                            @if ($user->user_id != $currentuser_id)
+                            <a class="btn btn-danger btn-sm" href="{{ url('admin/delete/'.$user->id) }}" onclick="javascript:return confirm('Are you sure ?')">
+                                <i class="fas fa-trash"> Xóa</i>
                             </a>
-                            {{-- @endif --}}
+                            @endif
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
           </table>
           <div class="pagination-block" style="float: right; padding-right: 24px">
-            {{ $ds->links('Admin-Rental.layoutpaginationlinks') }}
+            {{ $ds->links('Admin-program.layoutpaginationlinks') }}
           </div>
         </div>
     </div>
