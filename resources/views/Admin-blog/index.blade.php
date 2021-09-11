@@ -44,7 +44,7 @@
                 @endphp
                   <td>{{ $count }}</td>
                   <td>{{ $item->title }}</td>
-                  <td>{{ $item->content }}</td>
+                  <td>{!! $item->content !!}</td>
                   <td>
                       <img src="../images/blog/{{ $item->thumbnail }}" alt="" style="width: 100%">
                   </td>

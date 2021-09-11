@@ -100,6 +100,8 @@ Route::post('admin/blog/checkupdate/{id}', 'BlogController@checkupdate')->name('
 Route::get('admin/blog/delete/{id}', 'BlogController@delete')->name('admin.blog.delete');
 Route::get('admin/blog/view/{id}', 'BlogController@view')->name('admin.blog.view');
 
+Route::get('blog', 'BlogViewController@index');
+
 
 
 

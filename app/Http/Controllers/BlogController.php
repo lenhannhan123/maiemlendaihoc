@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use App\Http\Requests\BlogRequest;
 
 class BlogController extends Controller
 {
@@ -16,7 +17,7 @@ class BlogController extends Controller
         return view('Admin-blog.create');
     }
 
-    public function checkcreate(Request $request){
+    public function checkcreate(BlogRequest $request){
         $data = $request->all();
         if($request->hasFile('thumbnail')){
             $file = $request->file('thumbnail');
