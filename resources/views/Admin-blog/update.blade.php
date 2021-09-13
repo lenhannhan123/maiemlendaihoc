@@ -89,11 +89,8 @@
 
                 <form action="{{ route('admin.blog.checkupdate', $data->id_blog) }}" style="margin-top: 2%"  method="POST"
                     enctype="multipart/form-data">
-                    @csrf
-                
-                    <input type="hidden" name="id_blog" value="{{ $data->id_blog }}">
-                
-
+                    @csrf               
+                    <input type="hidden" name="id_blog" value="{{ $data->id_blog }}">        
                     <div class="row" style="margin-top: 5%">
                         <div class="col-sm-1"></div>
                         <div class="col">

@@ -48,7 +48,7 @@
               <li><a href="#why-us-section" class="nav-link">Why Us</a></li>
 
               <li><a href="#testimonials-section" class="nav-link">Testimonials</a></li>
-              <li><a href="#blog-section" class="nav-link">Blog</a></li>
+              <li><a href="{{ url('blog') }}" class="nav-link">Blog</a></li>
               <li><a href="#contact-section" class="nav-link">Contact</a></li>
             </ul>
           </nav>

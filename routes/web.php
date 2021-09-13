@@ -4,6 +4,7 @@ use App\Http\Controllers\Majorscontroller;
 use App\Http\Controllers\programstudy;
 use App\Http\Controllers\schoolcontroller;
 use App\Http\Controllers\schoolmajorscontroller;
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +27,19 @@ Route::get('/search', function () {
 });
 
 
+//--------------------------------------------------------------------------
+//Phần Thiện
 Route::get('/admin', function () {
     return view('adminhome');
-});
+})->middleware(['auth'])->name('adminhome');
+require __DIR__.'/auth.php';
+
+Route::get('/accountlist',[AccountController::class,"accountlist"])->name("accountlist");
+Route::get('/accountlist/createaccount',[AccountController::class,"createaccount"])->name("createaccount");
+Route::post('/accountlist/postCreate', [AccountController::class, "postCreate"]);
+Route::get('/delete/{id}', [AccountController::class, "delete"]);
+
+//--------------------------------------------------------------------------
 
 
 
@@ -86,6 +97,8 @@ Route::get('admin/blog/update/{id}', 'BlogController@update')->name('admin.blog.
 Route::post('admin/blog/checkupdate/{id}', 'BlogController@checkupdate')->name('admin.blog.checkupdate');
 Route::get('admin/blog/delete/{id}', 'BlogController@delete')->name('admin.blog.delete');
 Route::get('admin/blog/view/{id}', 'BlogController@view')->name('admin.blog.view');
+
+Route::get('blog', 'BlogViewController@index');
 
 
 

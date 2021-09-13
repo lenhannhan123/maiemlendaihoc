@@ -81,9 +81,29 @@
             <div role="main" class="form-all">
                 <div class="row" style="margin-top: 5%">
                     <div class="col">
-                        <h3 style="text-align: center">Thêm bài</h3>
+                        <h3 style="text-align: center">Thêm bài</h3>                      
                     </div>
                 </div>
+                <div class="row" style="margin-top: 5%">
+                    <div class="col-sm-1"></div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-10">
+                                @if ($errors->any())
+                                    <ul>
+                                        @foreach ($errors->all() as $item)
+                                        <li style="color: red">{{ $item }}</li>
+                                        @endforeach
+                                    </ul>
+                             @endif                 
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
 
   
 
@@ -91,7 +111,8 @@
                 <form action="{{ route('admin.blog.checkcreate') }}" style="margin-top: 2%"  method="POST"
                     enctype="multipart/form-data">
                     @csrf
-
+ 
+          
 
                     <div class="row" style="margin-top: 5%">
                         <div class="col-sm-1"></div>
@@ -99,8 +120,10 @@
                             <div class="row">
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-10">
+
                                     <label for="">Tiêu đề</label>
-                                    <input type="text" class="form-control" name="title" placeholder="Tiêu đề">
+                                    <label for="message1"></label>
+                                    <input type="text" class="form-control" id="title" name="title" placeholder="Tiêu đề">
 
                                 </div>
                             </div>
@@ -114,9 +137,10 @@
                             <div class="row">
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-10">
+
                                     <label for="">Nội dung</label>
-                                        <textarea class="form-control ckeditor" id="description" name="content" required
-                                        cols="100" rows="10"></textarea>
+                                        <textarea class="form-control ckeditor" id="content" name="content" required
+                                         cols="100" rows="10"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -142,8 +166,7 @@
 
 
 
-                   
-
+      
                
 
 
@@ -155,7 +178,7 @@
 
                         <div class="col" style="text-align: center">
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Thêm bài</button>
+                                <button class="btn btn-primary" type="submit">Thêm bài</button>
                             </div>
 
                         </div>
@@ -178,40 +201,30 @@
 
     </div>
 
+@endsection
+@section('script-section')
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('plugins/bs-custom-file-input/bs-custom-fileinput.min.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        bsCustomFileInput.init();
+    });
+</script>
+<script>
+    document.getElementById("file1").onchange = function() {
+        var reader = new FileReader();
 
-
-
-
-
-
-
-
-
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-fileinput.min.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            bsCustomFileInput.init();
-        });
-    </script>
-    <script>
-        document.getElementById("file1").onchange = function() {
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                // get loaded data and render thumbnail.
-                document.getElementById("image1").src = e.target.result;
-            };
-
-            // read the image file as a data URL.
-            reader.readAsDataURL(this.files[0]);
+        reader.onload = function(e) {
+            // get loaded data and render thumbnail.
+            document.getElementById("image1").src = e.target.result;
         };
-    </script>
+
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+    };
+</script>
 
 
 
-
-
-
-
+</script>
 @endsection

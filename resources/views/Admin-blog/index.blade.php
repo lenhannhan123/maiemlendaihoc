@@ -44,7 +44,7 @@
                 @endphp
                   <td>{{ $count }}</td>
                   <td>{{ $item->title }}</td>
-                  <td>{{ $item->content }}</td>
+                  <td>{!! $item->content !!}</td>
                   <td>
                       <img src="../images/blog/{{ $item->thumbnail }}" alt="" style="width: 100%">
                   </td>
@@ -71,6 +71,9 @@
               </tr>
                                    
               @endforeach
+              @if($count == 0)
+                <td colspan="7">Chưa có bài blog nào</td>
+              @endif
           </tbody>
       </table>
       <div class="pagination-block" style="float: right; padding-right: 24px">
