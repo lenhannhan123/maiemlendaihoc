@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\groupmajors;
+use App\Models\mojors;
+use App\Models\programstudy;
 use App\Models\School;
 use App\Models\schoolimage;
+use App\Models\schoolmaojors;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\BinaryOp\Equal;
 use SebastianBergmann\Environment\Console;
 
 class schoolcontroller extends Controller
@@ -225,4 +230,56 @@ class schoolcontroller extends Controller
 
         return redirect()->route('schoollist');
     }
+
+
+
+    public function home(Request $request){
+        $group = groupmajors::all();
+        $majors = mojors::all();
+
+        for($i=0; $i< count($group);$i++){
+            $major1=[];
+            $j=0;
+            foreach($majors as $item){
+              
+                if($group[$i]["ID_group_major"] == $item["ID_group_majors"] ){
+                  $major1[$j]  = $item;
+                  $j+=1;
+        
+                }
+            }
+            $group[$i]["major"]=$major1;
+        }
+
+        $adress = school::select("area", school::raw("count(area) as area_count") )->groupBy('area')->get();
+        $duration = schoolmaojors::select("duration")->groupBy('duration')->get();
+        $school = school::select("id_school","name_school","area")->get();
+
+
+        // dd($school);
+        // dd($group);
+        $programstudy = programstudy::all();
+
+        return view("home", compact("group","adress","programstudy","duration","school"));
+
+    }
+
+    
+
+    public function adress(Request $request){
+        $gourp_id= $request->all()["group_id"];
+        $idschool = schoolmaojors::select("ID_school")->where("ID_group_majors",$gourp_id)->groupBy('ID_school')->get();
+        $i=0;
+       foreach($idschool as $item){
+             $data[$i] = (school::select("id_school","name_school","area")->where("id_school",$item["ID_school"])->get())[0];
+             $i+=1;
+       }
+        return $data;
+
+    }
+
+    
+
 }
+
+

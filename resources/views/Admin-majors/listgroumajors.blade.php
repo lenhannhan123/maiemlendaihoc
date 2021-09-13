@@ -1,5 +1,5 @@
 @extends('layouts.layoutadmin.layout')
-@section('title', 'Đanh sách nhóm ngành')
+@section('title', 'Danh sách nhóm ngành')
 <style>
     #tontai {
         display: none;
@@ -99,7 +99,7 @@
     <div class="modal fade" id="modelDN" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="margin-top: 50%">
-                <form action="/listgroupmajors/add" method="POST" onsubmit="return checkerror()">
+                <form action="{{asset('/listgroupmajors/add')}}" method="POST" onsubmit="return checkerror()">
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Thêm nhóm ngành mới</h5>
@@ -170,7 +170,7 @@
             form =`<div class="modal fade" id="formedit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="margin-top: 50%">
-                <form action="/listgroupmajors/edit" method="POST" onsubmit="return checkerror1()">
+                <form action="{{asset('/listgroupmajors/edit')}}" method="POST" onsubmit="return checkerror1()">
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Nhóm ngành</h5>

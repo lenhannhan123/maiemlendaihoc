@@ -1,5 +1,5 @@
 @extends('layouts.layoutadmin.layout')
-@section('title', 'Đanh sách chuyên ngành')
+@section('title', 'Danh sách chuyên ngành')
 <style>
     #tontai {
         display: none;
@@ -80,18 +80,18 @@
 
 
                                 <a class="btn btn-danger btn-sm"
-                                    href="{{ url("/listgroupmajors/delete?id={$item->ID_group_major}") }}"
+                                    href="{{ url("/listmajors/delete?id= $item->ID_majors ") }}"
                                     onclick="javascript:return confirm('Bạn có thực sự muốn xóa ?')">
                                     <i class="fas fa-trash">
                                     </i>
                                     Xóa
                                 </a>
                             </td>
-                    </tr>
+                            </tr>
 
 
 
-                    @endforeach
+                         @endforeach
                     @if ($count == 0)
                         <tr>
                             <td colspan="5">Không có nhóm ngành trong hệ thống</td>
@@ -118,10 +118,11 @@
     {{-- Form đăng ký --}}
 
 
-    <div class="modal fade" id="modelDN" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modelDN" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="margin-top: 50%">
-                <form action="/listmajors/add" method="POST" onsubmit="return checkerror()">
+                <form action="{{ asset('/listmajors/add') }}" method="POST" onsubmit="return checkerror()">
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Thêm chuyên ngành mới</h5>
@@ -139,8 +140,9 @@
                                     <div class="col-sm-5">
                                         <div class="row">
                                             <div class="col">
-                                                <input type="text" class="form-control" placeholder="Nhập tên chuyên ngành"
-                                                    onchange="checknganh()" id="name" name="name">
+                                                <input type="text" class="form-control"
+                                                    placeholder="Nhập tên chuyên ngành" onchange="checknganh()" id="name"
+                                                    name="name">
                                             </div>
                                         </div>
 
@@ -210,12 +212,15 @@
         function edit(id, name, idgroup) {
 
             groupmajors = {!! json_encode($groupmajors->toArray(), JSON_HEX_TAG) !!};
-           str="";
+            str = "";
             for (i = 0; i < groupmajors.length; i++) {
                 if (groupmajors[i]["ID_group_major"] == idgroup) {
-                    str+= `<option name="groupmajors" id="` + groupmajors[i]["ID_group_major"] +`" class="form-control" selected  value="` + groupmajors[i]["ID_group_major"] +`">` + groupmajors[i]["name"] + `</option>`
+                    str += `<option name="groupmajors" id="` + groupmajors[i]["ID_group_major"] +
+                        `" class="form-control" selected  value="` + groupmajors[i]["ID_group_major"] + `">` + groupmajors[
+                            i]["name"] + `</option>`
                 } else {
-                    str+=   `<option name="groupmajors" id="` + groupmajors[i]["ID_group_major"] + `" class="form-control" value="` + groupmajors[i]["ID_group_major"] +`">` +
+                    str += `<option name="groupmajors" id="` + groupmajors[i]["ID_group_major"] +
+                        `" class="form-control" value="` + groupmajors[i]["ID_group_major"] + `">` +
                         groupmajors[i]["name"] + `</option>`
                 }
             }
@@ -225,7 +230,7 @@
                 `<div class="modal fade" id="formedit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="margin-top: 50%">
-                <form action="/listmajors/edit" method="POST" onsubmit="return checkerror1()">
+                <form action="{{ asset('/listmajors/edit') }}" method="POST" onsubmit="return checkerror1()">
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Nhóm ngành</h5>
@@ -275,7 +280,7 @@
                                         
                                                 <select name="groupmajors" id="groupmajors1" class="form-control">
                                           
-                                                    `+str+`
+                                                    ` + str + `
                                                 </select>
                                                    
                                                     

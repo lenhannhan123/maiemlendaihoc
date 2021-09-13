@@ -75,8 +75,9 @@ class Majorscontroller extends Controller
 
     
     public function deletelistmajors(Request $request){
-       
-        $id= $request->all()["id"];
+     
+        $id= $request->all();
+
         mojors::where("ID_majors",$id)->delete();
         return redirect()->route('listmajors');
 

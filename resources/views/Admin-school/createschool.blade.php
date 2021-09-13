@@ -150,7 +150,7 @@
                                 <div class="col-sm-8">
                                     <label for="">Địa chỉ</label>
                                     <input type="text" class="form-control" placeholder="Nhập địa chỉ" name="address"
-                                        id="address" required>
+                                        id="address" required onchange="addcity()">
                                     <div style="color:red">
                                         <label id="messages3"></label>
                                     </div>
@@ -166,13 +166,9 @@
                             <div class="row">
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-8">
-                                    <label for="">Vùng miền</label>
-                                    <select name="area" id="area" class="form-control">
-                                        <option value="Miền Bắc">Miền Bắc</option>
-                                        <option value="Miền Trung">Miền Trung</option>
-                                        <option value="Miền Nam">Miền Nam</option>
-                                        <option value="Nước ngoài">Nước ngoài</option>
-                                    </select>
+                                    <label for="">Thành phố</label>
+                                    <input type="text" class="form-control" placeholder="Thành phố" name="area"
+                                    id="area" required readonly>
                                 </div>
                             </div>
 
@@ -595,8 +591,6 @@
 
         }
     </script>
-
-
 
 
 

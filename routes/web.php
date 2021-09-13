@@ -17,10 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
+Route::get('/', [schoolcontroller::class, "home"])->name("homepage");
+Route::get('/searchadrees', [schoolcontroller::class, "adress"]);
 
 
 Route::get('/search', function () {
